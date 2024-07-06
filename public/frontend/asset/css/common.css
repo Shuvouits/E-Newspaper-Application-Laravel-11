@@ -1,0 +1,40 @@
+li.current_edition:hover{
+    background-color: inherit !important
+}
+
+#mask {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:9000;
+    background-color:#000;
+    display:none;
+
+}
+#boxes .window {
+    position:absolute;
+    left:0;
+    top:20px;
+    width:auto;
+    height:auto;
+    display:none;
+    z-index:9999;
+    padding:20px;
+    border-radius: 10px;
+    text-align: center;
+}
+#boxes #dialog {
+    width:auto;
+    height:auto;
+    padding:10px;
+}
+
+.modal_backup{
+
+    background-image: url('images/overlay.png');
+}
+.modal {
+background: rgb(6 6 6 / 50%);
+}
+
+
