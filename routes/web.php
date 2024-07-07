@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\AdvertiseController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\backend\SocialController;
@@ -24,6 +25,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     //Footer
     Route::get('/top-footer', [FooterController::class, 'TopFooter']);
     Route::get('/bottom-footer', [FooterController::class, 'BottomFooter']);
+
+    //Advertise
+    Route::get('/left-advertise', [AdvertiseController::class, 'LeftAdvertise']);
+    Route::get('/right-advertise', [AdvertiseController::class, 'RightAdvertise']);
 
 
 });
