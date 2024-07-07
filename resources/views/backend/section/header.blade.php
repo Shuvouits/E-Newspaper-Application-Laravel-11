@@ -168,9 +168,20 @@
                     <li>
                         <div class="dropdown-divider mb-0"></div>
                     </li>
-                    <li><a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
-                                class="bx bx-log-out-circle"></i><span>Logout</span></a>
+                    <li>
+                        <a class="dropdown-item d-flex align-items-center" href="javascript:;"><i
+                                class="bx bx-log-out-circle"></i>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                   <span :href="route('logout')"
+                                   onclick="event.preventDefault();
+                                               this.closest('form').submit();">Logout</span>
+                                </form>
+                        </a>
                     </li>
+
+                    
+
                 </ul>
             </div>
         </nav>
