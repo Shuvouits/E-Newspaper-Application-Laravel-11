@@ -26,11 +26,11 @@
                 <div class="menu-title">Managed Header</div>
             </a>
             <ul>
-                <li> <a href="app-emailbox.html"><i class='bx bx-radio-circle'></i>Social Setting</a>
+                <li> <a href="/social-setting"><i class='bx bx-radio-circle'></i>Social Setting</a>
                 </li>
-                <li> <a href="app-chat-box.html"><i class='bx bx-radio-circle'></i>Logo Setting</a>
+                <li> <a href="/logo-setting"><i class='bx bx-radio-circle'></i>Logo Setting</a>
                 </li>
-            
+
             </ul>
         </li>
         <li class="menu-label">UI Elements</li>
