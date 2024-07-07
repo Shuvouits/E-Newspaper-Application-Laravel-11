@@ -19,11 +19,14 @@
             </a>
 
         </li>
+
+        <li class="menu-label">Managed Header</li>
+
         <li>
             <a href="javascript:;" class="has-arrow">
                 <div class="parent-icon"><i class="bx bx-category"></i>
                 </div>
-                <div class="menu-title">Managed Header</div>
+                <div class="menu-title">Header-Settings</div>
             </a>
             <ul>
                 <li> <a href="/social-setting"><i class='bx bx-radio-circle'></i>Social Setting</a>
@@ -33,6 +36,27 @@
 
             </ul>
         </li>
+
+        <li class="menu-label">Managed Footer</li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Footer-Settings</div>
+            </a>
+            <ul>
+                <li> <a href="/top-footer"><i class='bx bx-radio-circle'></i>Top Footer</a>
+                </li>
+                <li> <a href="/bottom-footer"><i class='bx bx-radio-circle'></i>Bottom Setting</a>
+                </li>
+
+            </ul>
+        </li>
+
+
+
+
         <li class="menu-label">UI Elements</li>
         <li>
             <a href="widgets.html">
