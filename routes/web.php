@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\AdvertiseController;
+use App\Http\Controllers\backend\ContentController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\FooterController;
 use App\Http\Controllers\backend\SocialController;
@@ -29,6 +30,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     //Advertise
     Route::get('/left-advertise', [AdvertiseController::class, 'LeftAdvertise']);
     Route::get('/right-advertise', [AdvertiseController::class, 'RightAdvertise']);
+
+    //Content
+    Route::get('/add-content', [ContentController::class, 'AddContent']);
+    Route::get('/view-content', [ContentController::class, 'ViewContent']);
 
 
 });
