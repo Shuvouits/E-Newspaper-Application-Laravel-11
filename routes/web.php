@@ -34,13 +34,20 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     //Content
     Route::get('/add-content', [ContentController::class, 'AddContent']);
+    Route::post('/insert-content', [ContentController::class, 'InsertContent']);
     Route::get('/view-content', [ContentController::class, 'ViewContent']);
+    Route::delete('/post/{id}', [ContentController::class, 'destroy'])->name('post.destroy');
+    Route::get('/edit/content/{id}', [ContentController::class, 'EditContent']);
+    Route::post('/update-content', [ContentController::class, 'UpdateContent']);
+    Route::get('/remove/image-content/{id}', [ContentController::class, 'RemoveContent']);
 
     //Profile
     Route::get('/profile', [ProfileController::class, 'Profile']);
     Route::get('/setting', [ProfileController::class, 'Setting']);
     Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
     Route::post('/password-reset', [ProfileController::class, 'PasswordReset']);
+
+
 
 
 });
