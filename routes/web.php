@@ -40,6 +40,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/profile', [ProfileController::class, 'Profile']);
     Route::get('/setting', [ProfileController::class, 'Setting']);
     Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
+    Route::post('/password-reset', [ProfileController::class, 'PasswordReset']);
 
 
 });
