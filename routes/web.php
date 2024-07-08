@@ -4,8 +4,9 @@ use App\Http\Controllers\backend\AdvertiseController;
 use App\Http\Controllers\backend\ContentController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\FooterController;
+use App\Http\Controllers\backend\ProfileController;
 use App\Http\Controllers\backend\SocialController;
-use App\Http\Controllers\ProfileController;
+//use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -34,6 +35,10 @@ Route::middleware(['auth', 'verified'])->group(function(){
     //Content
     Route::get('/add-content', [ContentController::class, 'AddContent']);
     Route::get('/view-content', [ContentController::class, 'ViewContent']);
+
+    //Profile
+    Route::get('/profile', [ProfileController::class, 'Profile']);
+    Route::get('/setting', [ProfileController::class, 'Setting']);
 
 
 });
