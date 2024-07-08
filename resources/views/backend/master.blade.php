@@ -27,8 +27,16 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/header-colors.css') }}" />
+    <!-- SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <title>Laravel E-Newspaper</title>
 </head>
+
+<style>
+    .text-red-600{
+      color: red !important;
+    }
+</style>
 
 <body>
     <!--wrapper-->
@@ -182,6 +190,34 @@
     <script>
         new PerfectScrollbar(".app-container")
     </script>
+
+     <!-- SweetAlert2 JS -->
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+     <script>
+         @if(session('success'))
+             Swal.fire({
+                 toast: true,
+                 position: 'top-end',
+                 icon: 'success',
+                 title: '{{ session('success') }}',
+                 showConfirmButton: false,
+                 timer: 3000,
+                 timerProgressBar: true,
+             });
+         @endif
+
+         @if(session('error'))
+             Swal.fire({
+                 toast: true,
+                 position: 'top-end',
+                 icon: 'error',
+                 title: '{{ session('error') }}',
+                 showConfirmButton: false,
+                 timer: 3000,
+                 timerProgressBar: true,
+             });
+         @endif
+     </script>
 
 
 @stack('scripts');

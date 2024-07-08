@@ -39,6 +39,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     //Profile
     Route::get('/profile', [ProfileController::class, 'Profile']);
     Route::get('/setting', [ProfileController::class, 'Setting']);
+    Route::post('/profile', [ProfileController::class, 'UpdateProfile']);
 
 
 });
