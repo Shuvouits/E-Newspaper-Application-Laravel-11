@@ -22,10 +22,13 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     //Header
     Route::get('/social-setting', [SocialController::class, 'Social']);
+    Route::post('/social-setting', [SocialController::class, 'InsertSocial']);
     Route::get('/logo-setting', [SocialController::class, 'LogoSetting']);
+    Route::post('/logo-setting', [SocialController::class, 'InsertLogo']);
 
     //Footer
     Route::get('/top-footer', [FooterController::class, 'TopFooter']);
+    Route::post('/top-footer', [FooterController::class, 'InsertTopFooter']);
     Route::get('/bottom-footer', [FooterController::class, 'BottomFooter']);
 
     //Advertise
