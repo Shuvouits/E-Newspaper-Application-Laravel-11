@@ -28,46 +28,66 @@
                 <div class="card-body p-4">
                     <h5 class="mb-4">Insert/Update Advertise</h5>
 
-                    <div class="row mb-3">
-                        <label for="input49" class="col-sm-1 col-form-label">First Item</label>
-                        <div class="col-sm-11">
-                            <div class="input-group">
+                    <form method="post" enctype="multipart/form-data" action="/left-advertise">
+                        @csrf
 
-                                <input type="file" class="form-control" id="input49">
-                            </div>
-                        </div>
-                    </div>
+                        <div class="row mb-3">
+                            <label for="input49" class="col-sm-1 col-form-label">First Item</label>
+                            <div class="col-sm-11">
+                                <div class="input-group">
 
-                    <div class="row mb-3">
-                        <label for="input49" class="col-sm-1 col-form-label">Second Item</label>
-                        <div class="col-sm-11">
-                            <div class="input-group">
+                                    <input type="file" name="first_image" class="form-control" id="input49">
 
-                                <input type="file" class="form-control" id="input49">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row mb-3">
-                        <label for="input49" class="col-sm-1 col-form-label">Third Item</label>
-                        <div class="col-sm-11">
-                            <div class="input-group">
-
-                                <input type="file" class="form-control" id="input49">
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="row">
-                        <label class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <div class="d-md-flex d-grid align-items-center gap-3">
-                                <button type="button" class="btn btn-primary px-4">Update</button>
+                                </div>
+                                @if($firstImage)
+                                <img src="{{asset('uploads/' .$firstImage->value)}}" style="width: 150px; height: 150px; margin-top: 10px" />
+                                @endif
 
                             </div>
                         </div>
-                    </div>
+
+                        <div class="row mb-3">
+                            <label for="input49" class="col-sm-1 col-form-label">Second Item</label>
+                            <div class="col-sm-11">
+                                <div class="input-group">
+
+                                    <input type="file" name="second_image" class="form-control" id="input49">
+                                </div>
+                                @if($secondImage)
+                                <img src="{{asset('uploads/' .$secondImage->value)}}" style="width: 150px; height: 150px; margin-top: 10px" />
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="input49" class="col-sm-1 col-form-label">Third Item</label>
+                            <div class="col-sm-11">
+                                <div class="input-group">
+
+                                    <input type="file" name="third_image" class="form-control" id="input49">
+                                </div>
+                                @if($thirdImage)
+                                <img src="{{asset('uploads/' .$thirdImage->value)}}" style="width: 150px; height: 150px; margin-top: 10px" />
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <div class="d-md-flex d-grid align-items-center gap-3">
+                                    <button type="submit" class="btn btn-primary px-4">Update</button>
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+
+
                 </div>
             </div>
         </div>

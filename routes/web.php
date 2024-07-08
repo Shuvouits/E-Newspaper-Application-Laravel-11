@@ -30,7 +30,9 @@ Route::middleware(['auth', 'verified'])->group(function(){
 
     //Advertise
     Route::get('/left-advertise', [AdvertiseController::class, 'LeftAdvertise']);
+    Route::post('/left-advertise', [AdvertiseController::class, 'InsertLeftAdvertise']);
     Route::get('/right-advertise', [AdvertiseController::class, 'RightAdvertise']);
+    Route::post('/right-advertise', [AdvertiseController::class, 'InsertRightAdvertise']);
 
     //Content
     Route::get('/add-content', [ContentController::class, 'AddContent']);

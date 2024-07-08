@@ -68,14 +68,16 @@ class ContentController extends Controller
         return response()->json(['success' => 'Post deleted successfully!']);
     }
 
-    public function EditContent($id){
+    public function EditContent($id)
+    {
         $post = Post::where('id', $id)->with('contentData')->first();
-       // return $post;
+        // return $post;
         return view('backend.content.edit-content', compact('post'));
 
     }
 
-    public function UpdateContent(Request $request) {
+    public function UpdateContent(Request $request)
+    {
         $request->validate([
             'date' => 'required|date',
             'post_title' => 'required|string|max:255',
@@ -94,45 +96,50 @@ class ContentController extends Controller
         $post->save();
 
 
-       if($request->file('existing_content')){
+        if ($request->file('existing_content')) {
 
-        foreach ($request->file('existing_content') as $index => $file) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
+            foreach ($request->file('existing_content') as $index => $file) {
+                $filename = $file->getClientOriginalName();
+                $file->move('uploads', $filename);
 
-            // Create a new Content instance for each image
-            $content = new Content();
-            $content->post_id = $post_id;
-            $content->content = $filename;
-            $content->save();
+                // Create a new Content instance for each image
+                $content = new Content();
+                $content->post_id = $post_id;
+                $content->content = $filename;
+                $content->save();
 
-        }
-
-       }
-
-       if($request->file('content')){
-
-        foreach ($request->file('content') as $index => $file) {
-            $filename = $file->getClientOriginalName();
-            $file->move('uploads', $filename);
-
-            // Create a new Content instance for each image
-            $content = new Content();
-            $content->post_id = $post_id;
-            $content->content = $filename;
-            $content->save();
+            }
 
         }
 
-       }
+        if ($request->file('content')) {
 
+            foreach ($request->file('content') as $index => $file) {
+                $filename = $file->getClientOriginalName();
+                $file->move('uploads', $filename);
 
+                // Create a new Content instance for each image
+                $content = new Content();
+                $content->post_id = $post_id;
+                $content->content = $filename;
+                $content->save();
+
+            }
+
+        }
 
         return redirect()->back()->with('success', 'Content updated successfully.');
     }
 
-    public function RemoveContent($id){
+    public function RemoveContent($id)
+    {
+        $content_data = Content::where('id', $id)->first();
+        if ($content_data->content && file_exists(public_path('uploads/' . $content_data->content))) {
+            unlink(public_path('uploads/' . $content_data->content));
+        }
+
         Content::where('id', $id)->delete();
+
         return redirect()->back()->with('success', 'One Item Deleted');
 
     }
