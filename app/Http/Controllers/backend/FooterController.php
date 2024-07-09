@@ -19,7 +19,9 @@ class FooterController extends Controller
     }
 
     public function BottomFooter(){
-        return view('backend.footer.bottom-footer');
+        $company = TopFooter::where('key','company')->first();
+        $copyright = TopFooter::where('key','copyright')->first();
+        return view('backend.footer.bottom-footer', compact('company','copyright'));
     }
 
     public function InsertTopFooter(Request $request)
@@ -31,6 +33,27 @@ class FooterController extends Controller
             'office' => ['nullable', 'string', 'max:255'],
             'mobile' => ['required', 'digits:11'],
             'email' => ['required', 'email', 'max:255'],
+            'copyright' => ['nullable', 'max:255'],
+            'company' => ['nullable',  'max:255'],
+        ]);
+
+        foreach($validatedData as $key => $value) {
+            TopFooter::updateOrCreate(
+                ['key' => $key],
+                ['value' => $value]
+            );
+
+        }
+
+        return redirect()->back()->with('success', 'Advertise Updated');
+    }
+
+    public function InsertBottomFooter(Request $request)
+    {
+        $validatedData = $request->validate([
+
+            'copyright' => ['required', 'max:255'],
+            'company' => ['required',  'max:255'],
         ]);
 
         foreach($validatedData as $key => $value) {

@@ -9,13 +9,10 @@ use App\Http\Controllers\backend\SocialController;
 //use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-/*Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard'); */
+
+Route::get('/', [DashboardController::class, 'FrontendDashboard']);
+
 
 Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'Dashboard'])->name('dashboard');
@@ -30,6 +27,7 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::get('/top-footer', [FooterController::class, 'TopFooter']);
     Route::post('/top-footer', [FooterController::class, 'InsertTopFooter']);
     Route::get('/bottom-footer', [FooterController::class, 'BottomFooter']);
+    Route::post('/bottom-footer', [FooterController::class, 'InsertBottomFooter']);
 
     //Advertise
     Route::get('/left-advertise', [AdvertiseController::class, 'LeftAdvertise']);

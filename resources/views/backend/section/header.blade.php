@@ -146,7 +146,7 @@
                     <img src="{{asset('backend/assets/images/avatars/avatar-2.png')}}" class="user-img" alt="user avatar">
                     <div class="user-info">
                         <p class="user-name mb-0">{{auth()->user()->name}}</p>
-                        <p class="designattion mb-0">Web Designer</p>
+                        <p class="designattion mb-0">Admin</p>
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -197,66 +197,26 @@
             </div>
             <div class="modal-body">
                 <div class="search-list">
-                    <p class="mb-1">Html Templates</p>
+                    <p class="mb-1">Your Latest Content</p>
                     <div class="list-group">
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action active align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-angular fs-4'></i>Best Html Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-vuejs fs-4'></i>Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-magento fs-4'></i>Responsive Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-shopify fs-4'></i>eCommerce Html Templates</a>
+
+                        @php
+                        use App\Models\Post;
+
+                        // Fetch the latest 10 posts with their latest content data
+                        $posts = Post::with('latestContentData')->latest()->limit(10)->get();
+                    @endphp
+
+                        @foreach($posts as $item)
+                        <a href="/edit/content/{{$item->id}}"
+                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1">
+                                <img src="{{asset('uploads/' . $item->latestContentData->content)}}" style="width: 80px; height: 80px" />
+                                {{$item->post_title}}</a>
+                        @endforeach
+
                     </div>
-                    <p class="mb-1 mt-3">Web Designe Company</p>
-                    <div class="list-group">
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-windows fs-4'></i>Best Html Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-dropbox fs-4'></i>Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-opera fs-4'></i>Responsive Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-wordpress fs-4'></i>eCommerce Html Templates</a>
-                    </div>
-                    <p class="mb-1 mt-3">Software Development</p>
-                    <div class="list-group">
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-mailchimp fs-4'></i>Best Html Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-zoom fs-4'></i>Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-sass fs-4'></i>Responsive Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-vk fs-4'></i>eCommerce Html Templates</a>
-                    </div>
-                    <p class="mb-1 mt-3">Online Shoping Portals</p>
-                    <div class="list-group">
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-slack fs-4'></i>Best Html Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-skype fs-4'></i>Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-twitter fs-4'></i>Responsive Html5 Templates</a>
-                        <a href="javascript:;"
-                            class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1"><i
-                                class='bx bxl-vimeo fs-4'></i>eCommerce Html Templates</a>
-                    </div>
+
+
                 </div>
             </div>
         </div>

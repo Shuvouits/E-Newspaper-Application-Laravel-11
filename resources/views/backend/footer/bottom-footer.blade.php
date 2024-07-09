@@ -28,47 +28,56 @@
                 <div class="card-body p-4">
                     <h5 class="mb-4">Insert/Update Footer</h5>
 
-                    <div class="row mb-3">
-                        <label for="input49" class="col-sm-2 col-form-label">Copyright</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-text">
+                    <form method="post" action="/bottom-footer">
+                        @csrf
 
-                                    <i class="fa fa-facebook" style="width: 20px"></i>
+                        <div class="row mb-3">
+                            <label for="input49" class="col-sm-2 col-form-label">Copyright</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
 
+                                    <input type="text" name="copyright" value="{{$copyright->value}}" class="form-control" id="input49"
+                                        placeholder="Enter Copyright">
 
-                                </span>
-                                <input type="text" class="form-control" id="input49"
-                                    placeholder="Your Name">
+                                        @error('copyright')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="row mb-3">
-                        <label for="input49" class="col-sm-2 col-form-label">Company Name</label>
-                        <div class="col-sm-10">
-                            <div class="input-group">
-                                <span class="input-group-text">
+                        <div class="row mb-3">
+                            <label for="input49" class="col-sm-2 col-form-label">Company Name</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
 
-                                   <i class="fa fa-twitter" style="width: 20px"></i>
+                                    <input type="text" name="company" value="{{$company->value}}"  class="form-control" id="input49"
+                                        placeholder="Your Company Name">
 
-                                </span>
-                                <input type="text" class="form-control" id="input49"
-                                    placeholder="Your Name">
+                                        @error('company')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+
+                                </div>
                             </div>
                         </div>
-                    </div>
 
 
-                    <div class="row">
-                        <label class="col-sm-3 col-form-label"></label>
-                        <div class="col-sm-9">
-                            <div class="d-md-flex d-grid align-items-center gap-3">
-                                <button type="button" class="btn btn-primary px-4">Update</button>
+                        <div class="row">
+                            <label class="col-sm-3 col-form-label"></label>
+                            <div class="col-sm-9">
+                                <div class="d-md-flex d-grid align-items-center gap-3">
+                                    <button type="submit" class="btn btn-primary px-4">Update</button>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
+
+
+                    </form>
+
+
                 </div>
             </div>
         </div>
