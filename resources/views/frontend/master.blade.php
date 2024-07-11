@@ -177,9 +177,7 @@
         });
     </script>
 
-    <input type="hidden" class="site_url" value="https://laraepaper.themebazar.xyz">
-    <input type="hidden" class="site_url_name" value="By Edition">
-    <input type="hidden" class="current_url" value="By Edition">
+   @stack('scripts')
 
 </body>
 

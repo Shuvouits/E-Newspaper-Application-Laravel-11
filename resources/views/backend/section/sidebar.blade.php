@@ -88,6 +88,23 @@
             </ul>
         </li>
 
+        <li class="menu-label">Managed Zoom</li>
+
+        <li>
+            <a href="javascript:;" class="has-arrow">
+                <div class="parent-icon"><i class="bx bx-category"></i>
+                </div>
+                <div class="menu-title">Image/Zoom-Settings</div>
+            </a>
+            <ul>
+                <li> <a href="/add-zoom"><i class='bx bx-radio-circle'></i>Add Data</a>
+                </li>
+                <li> <a href="/view-zoom"><i class='bx bx-radio-circle'></i>View Content</a>
+                </li>
+
+            </ul>
+        </li>
+
 
 
 

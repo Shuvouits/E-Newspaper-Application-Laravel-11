@@ -14,6 +14,10 @@ class Post extends Model
         return $this->hasMany(Content::class, 'post_id');
     }
 
+    public function zoomData(){
+        return $this->hasMany(Zoom::class, 'post_id');
+    }
+
     public function latestContentData()
 {
     return $this->hasOne(Content::class, 'post_id')->oldestOfMany();

@@ -17,7 +17,7 @@
 
     </div>
     <!--end breadcrumb-->
-    <h6 class="mb-0 text-uppercase">DataTable Example</h6>
+    <h6 class="mb-0 text-uppercase">Zoom Example</h6>
     <hr />
     <div class="card">
         <div class="card-body">
@@ -26,24 +26,21 @@
                     <thead>
                         <tr>
                             <th>SL</th>
-                            <th>Title</th>
-                            <th>Date</th>
-                            <th>Meta Title</th>
-                            <th>Content Count</th>
+                            <th>Post Title</th>
+                            <th>Image</th>
                             <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($post as $count=>$item)
+                        @foreach($zoom as $count=>$item)
                         <tr>
                             <td>{{$count+1}}</td>
-                            <td>{{$item->post_title}}</td>
-                            <td>{{$item->date}}</td>
-                            <td>{{$item->meta_title}}</td>
-                            <td>{{$item->contentData->count()}}</td>
-                            <td>
-                                <a href="/edit/content/{{$item->id}}" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                            <td>{{$item->postData->post_title}}</td>
 
+                            <td>
+                                <img src="{{asset('uploads/' .$item->image)}}"  style="width: 150px; height: 150px"/>
+                            </td>
+                            <td>
                                 <button href="" class="btn btn-danger delete-button" data-id="{{ $item->id }}"><i class="fa fa-trash"></i></button>
                             </td>
                         </tr>
@@ -56,10 +53,9 @@
                     <tfoot>
                         <tr>
                             <th>SL</th>
-                            <th>Title</th>
-                            <th>Date</th>
-                            <th>Meta Title</th>
-                            <th>Content Count</th>
+                            <th>Post Title</th>
+                            <th>Image</th>
+
                             <th>Action</th>
                         </tr>
                     </tfoot>
@@ -77,10 +73,9 @@ $(document).ready(function() {
     $('.delete-button').on('click', function(e) {
         e.preventDefault();
 
-        let postId = $(this).data('id');
-        let url = '{{ route("post.destroy", ":id") }}';
-        console.log(url);
-        url = url.replace(':id', postId);
+        let zoomId = $(this).data('id');
+        let url = '{{ route("zoom.destroy", ":id") }}';
+        url = url.replace(':id', zoomId);
 
         Swal.fire({
             title: 'Are you sure?',
@@ -99,19 +94,18 @@ $(document).ready(function() {
                         _token: '{{ csrf_token() }}'
                     },
                     success: function(response) {
-                        console.log(response)
                         if(response.success) {
                             Swal.fire(
                                 'Deleted!',
                                 'Your post has been deleted.',
                                 'success'
                             );
-                            $('#post-row-' + postId).remove();
+                            $('#post-row-' + zoomId).remove();
                             location.reload();
                         } else {
                             Swal.fire(
                                 'Error!',
-                                `${response.error}`,
+                                'There was an error deleting the post.',
                                 'error'
                             );
                         }

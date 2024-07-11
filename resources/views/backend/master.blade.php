@@ -27,6 +27,7 @@
     <link rel="stylesheet" href="{{ asset('backend/assets/css/dark-theme.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/semi-dark.css') }}" />
     <link rel="stylesheet" href="{{ asset('backend/assets/css/header-colors.css') }}" />
+    <link rel="stylesheet" href="../../../../../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/css/select2.min.css" />
     <!-- SweetAlert2 CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <title>Laravel E-Newspaper</title>
@@ -173,6 +174,8 @@
     <script src="{{ asset('backend/assets/plugins/jquery-knob/jquery.knob.js') }}"></script>
     <script src="{{asset('backend/assets/plugins/datatable/js/jquery.dataTables.min.js')}}"></script>
     <script src="{{asset('backend/assets/plugins/datatable/js/dataTables.bootstrap5.min.js')}}"></script>
+    <script src="../../../../../cdn.jsdelivr.net/npm/select2%404.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="{{asset('backend/assets/plugins/select2/js/select2-custom.js')}}"></script>
     <script>
         $(document).ready(function() {
             $('#example').DataTable();

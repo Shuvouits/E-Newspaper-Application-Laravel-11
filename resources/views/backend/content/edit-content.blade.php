@@ -34,7 +34,7 @@
                                 <div class="col-sm-11">
                                     <div class="input-group">
                                         <input type="file" class="form-control" name="content[]" id="file-{{ $index + 1 }}">
-                                        
+                                        <input type="hidden" name="content_id[]" value="{{$item->id}}" />
 
                                     </div>
                                     <img id="preview-{{ $index + 1 }}" src="{{ asset('uploads/' . $item->content) }}" alt="Image Preview" style="max-width: 150px; margin-top: 10px;">
@@ -143,7 +143,7 @@
                     <label class="col-sm-1 col-form-label">${labelText}</label>
                     <div class="col-sm-11">
                         <div class="input-group">
-                            <input type="file" class="form-control" name="content[]" id="file-${elementCount}">
+                            <input type="file" class="form-control" name="new_content[]" id="file-${elementCount}">
                             <button type="button" class="remove-element btn btn-danger">Remove</button>
                         </div>
                         <img id="preview-${elementCount}" src="" alt="Image Preview" style="max-width: 150px; margin-top: 10px; display: none;">

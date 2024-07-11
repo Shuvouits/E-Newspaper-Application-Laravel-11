@@ -62,10 +62,19 @@ class ContentController extends Controller
 
     public function destroy($id)
     {
-        $post = Post::findOrFail($id);
-        $post->delete();
+        $post_count = Post::count();
+        if($post_count > 1){
+            $post = Post::findOrFail($id);
 
-        return response()->json(['success' => 'Post deleted successfully!']);
+            $post->delete();
+
+            return response()->json(['success' => 'Post deleted successfully!']);
+
+        }else{
+            return response()->json(['error' => 'Minimum one post is required']);
+
+        }
+
     }
 
     public function EditContent($id)
@@ -96,25 +105,29 @@ class ContentController extends Controller
         $post->save();
 
 
-        if ($request->file('existing_content')) {
+        $content_ids = $request->input('content_id', []);
+    $files = $request->file('content', []);
 
-            foreach ($request->file('existing_content') as $index => $file) {
-                $filename = $file->getClientOriginalName();
-                $file->move('uploads', $filename);
+        if ($request->file('content')) {
 
-                // Create a new Content instance for each image
-                $content = new Content();
-                $content->post_id = $post_id;
-                $content->content = $filename;
-                $content->save();
 
+            foreach ($content_ids as $index => $content_id) {
+                if (isset($files[$index])) {
+                    $file = $files[$index];
+                    $filename = $file->getClientOriginalName();
+                    $file->move('uploads', $filename);
+
+                    $content = Content::findOrFail($content_id);
+                    $content->content = $filename;
+                    $content->save();
+                }
             }
 
         }
 
-        if ($request->file('content')) {
+        if ($request->file('new_content')) {
 
-            foreach ($request->file('content') as $index => $file) {
+            foreach ($request->file('new_content') as $index => $file) {
                 $filename = $file->getClientOriginalName();
                 $file->move('uploads', $filename);
 
@@ -133,14 +146,25 @@ class ContentController extends Controller
 
     public function RemoveContent($id)
     {
+
         $content_data = Content::where('id', $id)->first();
-        if ($content_data->content && file_exists(public_path('uploads/' . $content_data->content))) {
-            unlink(public_path('uploads/' . $content_data->content));
+
+        $post_content_count = Content::where('post_id', $content_data->post_id)->count();
+
+        if($post_content_count > 1){
+
+            if ($content_data->content && file_exists(public_path('uploads/' . $content_data->content))) {
+                unlink(public_path('uploads/' . $content_data->content));
+            }
+
+            Content::where('id', $id)->delete();
+
+            return redirect()->back()->with('success', 'One Item Deleted');
+
+        }else{
+            return redirect()->back()->with('error', 'At least one content is required');
+
         }
-
-        Content::where('id', $id)->delete();
-
-        return redirect()->back()->with('success', 'One Item Deleted');
 
     }
 

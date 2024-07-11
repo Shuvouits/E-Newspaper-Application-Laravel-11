@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\admin\ZoomController;
 use App\Http\Controllers\backend\AdvertiseController;
 use App\Http\Controllers\backend\ContentController;
 use App\Http\Controllers\backend\DashboardController;
@@ -12,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [DashboardController::class, 'FrontendDashboard']);
+Route::get('/nogor-edition/{date}/{id}', [DashboardController::class, 'SpecificContent']);
+Route::get('/all-page', [DashboardController::class, 'AllPage']);
 
 
 Route::middleware(['auth', 'verified'])->group(function(){
@@ -34,6 +37,13 @@ Route::middleware(['auth', 'verified'])->group(function(){
     Route::post('/left-advertise', [AdvertiseController::class, 'InsertLeftAdvertise']);
     Route::get('/right-advertise', [AdvertiseController::class, 'RightAdvertise']);
     Route::post('/right-advertise', [AdvertiseController::class, 'InsertRightAdvertise']);
+
+    //zoom
+
+    Route::get('/add-zoom', [ZoomController::class, 'AddZoom']);
+    Route::post('/store-zoom', [ZoomController::class, 'StoreZoom']);
+    Route::get('/view-zoom', [ZoomController::class, 'ViewZoom']);
+    Route::delete('/zoom/{id}', [ZoomController::class, 'destroy'])->name('zoom.destroy');
 
     //Content
     Route::get('/add-content', [ContentController::class, 'AddContent']);

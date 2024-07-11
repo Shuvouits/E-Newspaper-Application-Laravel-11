@@ -143,7 +143,16 @@
             <div class="user-box dropdown px-3">
                 <a class="d-flex align-items-center nav-link dropdown-toggle gap-3 dropdown-toggle-nocaret"
                     href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                    @if(auth()->user()->avatar)
+                    <img src="{{asset('uploads/' .auth()->user()->avatar)}}" class="user-img" alt="user avatar">
+                    @else
                     <img src="{{asset('backend/assets/images/avatars/avatar-2.png')}}" class="user-img" alt="user avatar">
+
+                    @endif
+
+
+
                     <div class="user-info">
                         <p class="user-name mb-0">{{auth()->user()->name}}</p>
                         <p class="designattion mb-0">Admin</p>
@@ -210,7 +219,7 @@
                         @foreach($posts as $item)
                         <a href="/edit/content/{{$item->id}}"
                             class="list-group-item list-group-item-action align-items-center d-flex gap-2 py-1">
-                                <img src="{{asset('uploads/' . $item->latestContentData->content)}}" style="width: 80px; height: 80px" />
+                                <img src="{{asset('uploads/' . $item->latestContentData?->content)}}" style="width: 80px; height: 80px" />
                                 {{$item->post_title}}</a>
                         @endforeach
 
